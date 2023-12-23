@@ -104,11 +104,17 @@ const Main = ({ group, order }) => {
               arr = arr.sort((a, b) => b.priority - a.priority);
             }
             return (
-              <div key={i} className="flex flex-col gap-2">
-                <div>
-                  {u.name}
-                  {u.id}
+              <div key={i} className="flex flex-col gap-2 mt-5">
+                <div className="flex justify-between items-center gap-3 px-4 ">
+                  <div className="flex justify-center items-center gap-2">
+                    {u.name}{" "}
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <FaPlus />
+                    <IoEllipsisHorizontalOutline />
+                  </div>
                 </div>
+
                 <div className="flex flex-col gap-2">
                   {arr.map((a, j) => {
                     const prior = priorityData.find((p, k) => k === a.priority);
@@ -144,11 +150,17 @@ const Main = ({ group, order }) => {
               arr = arr.sort((a, b) => b.priority - a.priority);
             }
             return (
-              <div key={i} className="flex flex-col gap-2">
-                <div className="flex gap-2 justify-center items-center">
-                  {s.icon}
-                  {s.name}
+              <div key={i} className="flex flex-col gap-2 mt-5">
+                <div className="flex justify-between items-center gap-3 px-4 ">
+                  <div className="flex justify-center items-center gap-2">
+                    {s.icon} <span>{s.name}</span>{" "}
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <FaPlus />
+                    <IoEllipsisHorizontalOutline />
+                  </div>
                 </div>
+                <div className="flex gap-2 justify-center items-center"></div>
                 <div className="flex flex-col gap-2">
                   {arr.map((a, j) => {
                     const user = users.find((u) => u.id === a.userId);
