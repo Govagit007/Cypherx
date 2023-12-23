@@ -11,6 +11,8 @@ import { FaRegCircle } from "react-icons/fa";
 import { MdOutlineIncompleteCircle } from "react-icons/md";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
+import { FaPlus } from "react-icons/fa6";
+import { IoEllipsisHorizontalOutline } from "react-icons/io5";
 
 const Main = ({ group, order }) => {
   const [tickets, setTickets] = useState([]);
@@ -48,19 +50,25 @@ const Main = ({ group, order }) => {
   return (
     <div className="bg-slate-300 dark:bg-slate-600 text-slate-600 dark:text-slate-300 flex gap-10 flex-col min-h-screen">
       {group === "priority" && (
-        <div className="flex justify-around">
+        <div className="flex justify-around flex-wrap ">
           {priorityData.map((p, i) => {
             let arr = tickets.filter((t) => t.priority === i);
-            console.log(arr);
+
             if (order === "title") {
               arr = arr.sort((a, b) => a.title.localeCompare(b.title));
             }
             return (
-              <div key={i} className="">
-                <div className="flex justify-center items-center gap-3">
-                  {p.icon} <span>{p.name}</span>{" "}
+              <div key={i} className="flex flex-col gap-2 mt-5">
+                <div className="flex justify-between items-center gap-3 px-4 ">
+                  <div className="flex justify-center items-center gap-2">
+                    {p.icon} <span>{p.name}</span>{" "}
+                  </div>
+                  <div className="flex justify-center items-center gap-2">
+                    <FaPlus />
+                    <IoEllipsisHorizontalOutline />
+                  </div>
                 </div>
-                <div className="flex  flex-col gap-4">
+                <div className="flex  flex-col gap-2">
                   {arr.map((a, j) => {
                     const user = users.find((u) => u.id === a.userId);
                     const st = status.find((s) => s.name === a.status);
@@ -87,20 +95,21 @@ const Main = ({ group, order }) => {
       )}
 
       {group === "users" && (
-        <div className="flex gap-4">
+        <div className="flex justify-around flex-wrap">
           {users.map((u, i) => {
             let arr = tickets.filter((t) => t.userId === u.id);
             if (order === "title") {
               arr = arr.sort((a, b) => a.title.localeCompare(b.title));
-              console.log(arr);
+            } else {
+              arr = arr.sort((a, b) => b.priority - a.priority);
             }
             return (
-              <div key={i}>
+              <div key={i} className="flex flex-col gap-2">
                 <div>
                   {u.name}
                   {u.id}
                 </div>
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
                   {arr.map((a, j) => {
                     const prior = priorityData.find((p, k) => k === a.priority);
                     const st = status.find((s) => s.name === a.status);
@@ -126,19 +135,21 @@ const Main = ({ group, order }) => {
         </div>
       )}
       {group === "status" && (
-        <div className="flex gap-4">
+        <div className="flex justify-around flex-wrap">
           {status.map((s, i) => {
             let arr = tickets.filter((t) => t.status === s.name);
             if (order === "title") {
               arr = arr.sort((a, b) => a.title.localeCompare(b.title));
+            } else {
+              arr = arr.sort((a, b) => b.priority - a.priority);
             }
             return (
-              <div key={i}>
-                <div>
-                  {s.name}
+              <div key={i} className="flex flex-col gap-2">
+                <div className="flex gap-2 justify-center items-center">
                   {s.icon}
+                  {s.name}
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                   {arr.map((a, j) => {
                     const user = users.find((u) => u.id === a.userId);
                     const prior = priorityData.find((p, k) => k === a.priority);

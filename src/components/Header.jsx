@@ -17,7 +17,7 @@ const Header = ({ setGroup, setOrder, setDarkMode, darkMode }) => {
   };
 
   return (
-    <div className="flex flex-row bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 p-4">
+    <div className="flex flex-row bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-10 py-3">
       <div
         className="absolute right-16 top-1/8"
         onClick={() => setDarkMode(!darkMode)}
@@ -26,7 +26,7 @@ const Header = ({ setGroup, setOrder, setDarkMode, darkMode }) => {
       </div>
       <div>
         {isOpen && (
-          <div className="absolute top-16 flex flex-col bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-10 gap-4">
+          <div className="absolute top-16 flex flex-col bg-white rounded-xl shadow dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-10 gap-4 -translate-x-3">
             <div className="flex gap-10 ">
               <h1>Grouping</h1>
               <select
@@ -51,7 +51,12 @@ const Header = ({ setGroup, setOrder, setDarkMode, darkMode }) => {
           </div>
         )}
       </div>
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`${
+          isOpen ? "bg-slate-400 text-slate-800" : "bg-slate-100 text-slate-800"
+        } px-3 py-1 rounded`}
+      >
         {" "}
         {`${isOpen ? "Close" : "Open"} Filter`}
       </button>

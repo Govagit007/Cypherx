@@ -12,7 +12,7 @@ const Card = ({
   status,
 }) => {
   return (
-    <div className="w-[270px] bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 gap-4 flex flex-col justify-center items-start p-3">
+    <div className="w-[270px] bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow rounded-xl  gap-2 flex flex-col justify-center items-start p-3 pb-4">
       <div className="flex justify-between w-full ">
         <h1>{id}</h1>
         {group !== "users" ? <p>{name}</p> : null}
