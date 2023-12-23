@@ -1,5 +1,5 @@
 // App.js
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -9,6 +9,17 @@ function App() {
 
   const [group, setGroup] = useState("priority");
   const [order, setOrder] = useState("priority");
+
+  useEffect(() => {
+    const gr = localStorage.getItem("Grouping");
+    if (gr) {
+      setGroup(gr);
+    }
+    const or = localStorage.getItem("Ordering");
+    if (or) {
+      setOrder(or);
+    }
+  }, []);
 
   return (
     <div className={`App ${darkMode ? "dark" : "light"}`}>
